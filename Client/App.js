@@ -1,22 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
+import React, { useState,useContext } from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import LoginScreen from './src/Screens/LoginScreen/LoginScreen';
+import RegisterScreen from './src/Screens/RegisterScreen/RegisterScreen';
+import Navigation from '/src/navigation'
+import UserContext from './src/Context/UserContext';
 
 export default function App() {
+  const [userEmail, setUserEmail] = useState(""); 
+
   return (
-    <SafeAreaView style={styles.container}>
-      <LoginScreen />
-      <StatusBar style="auto" />
+    <UserContext.Provider value={{ userEmail, setUserEmail }}>
+    <SafeAreaView style={styles.root}>
+      <Navigation />
     </SafeAreaView>
+    </UserContext.Provider>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
+  root: {
     flex: 1,
     backgroundColor: '#f9fbf1',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

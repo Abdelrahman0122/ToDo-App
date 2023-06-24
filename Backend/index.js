@@ -55,7 +55,7 @@ async function main() {
       if (!passwordMatch) {
         return res.status(401).json({ error: 'Invalid email or password' });
       }
-      res.json({ message: 'Login successful!', user });
+      res.status(200).json({ message: 'Login successful!', user });
     } catch (e) {
       console.error(e.message);
       res.status(500).json({ error: 'Failed to log in' });

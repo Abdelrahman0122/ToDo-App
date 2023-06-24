@@ -1,24 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState,AsyncStorage,useContext   } from 'react';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import {
   View,
   Text,
-  TextInput,
-  TouchableOpacity,
-  Image,
   StyleSheet,
 } from 'react-native';
 import CustomButton from '../../components/CustomButton/CustomButton';
+import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+import UserContext from '../../Context/UserContext';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
+  const { setUserEmail } = useContext(UserContext);
   const [password, setPassword] = useState('');
+  const navigation = useNavigation();
 
-  const handleLogin = () => {
-    console.warn("success")
-  };
+
+  const handleLogin = async () => {
+    await axios
+        .post('http://localhost:3000/login', {
+            email,
+            password,
+        })
+        .then((response) => {
+          console.log(response);
+          setUserEmail(response.data.user.id);
+         navigation.navigate('Home');
+})
+        .catch((error) => {
+            console.log(error);
+        });
+};
+
+
+
   const onSignUpPress = () => {
     console.warn("Cahnge screen")
+    navigation.navigate('Register')
   };
 
   return (

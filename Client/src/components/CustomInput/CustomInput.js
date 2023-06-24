@@ -16,7 +16,7 @@ const CustomInput = ({ value, setValue , placeholder, secureTextEntry}) => {
 }
 const styles = StyleSheet.create({
     container: {
-        width: width * 0.8,
+        width: width *0.8,
         textAlign: 'center',
         backgroundColor: '#fff',
         paddingHorizontal: 10,
@@ -24,11 +24,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         marginVertical: 5,
-        alignSelf: 'stretch',
+        alignSelf: 'center',
         },
       Input: { 
-        fontSize: 24,
-        
+        fontSize: 24,   
         marginTop: 10,
         marginBottom: 20,
         width: '100%',
