@@ -12,7 +12,7 @@ import UserContext from '../../Context/UserContext';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
-  const { setUserEmail } = useContext(UserContext);
+  const { setUserId } = useContext(UserContext);
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
@@ -25,7 +25,7 @@ const LoginScreen = () => {
         })
         .then((response) => {
           console.log(response);
-          setUserEmail(response.data.user.id);
+          setUserId(response.data.user.id);
          navigation.navigate('Home');
 })
         .catch((error) => {

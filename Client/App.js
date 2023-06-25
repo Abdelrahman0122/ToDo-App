@@ -6,10 +6,10 @@ import Navigation from '/src/navigation'
 import UserContext from './src/Context/UserContext';
 
 export default function App() {
-  const [userEmail, setUserEmail] = useState(""); 
+  const [userId, setUserId] = useState(""); 
 
   return (
-    <UserContext.Provider value={{ userEmail, setUserEmail }}>
+    <UserContext.Provider value={{ userId, setUserId }}>
     <SafeAreaView style={styles.root}>
       <Navigation />
     </SafeAreaView>

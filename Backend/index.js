@@ -22,7 +22,7 @@ async function main() {
    // console.log(user)
 }
 
-
+ // The Registration Route
   app.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
     try {
@@ -34,6 +34,7 @@ async function main() {
     }
   });
   
+  // The Get Users Route
   app.get('/', async (req, res) => {
     try {
       const users = await prisma.user.findMany();
@@ -44,7 +45,8 @@ async function main() {
     }
   });
 
-  app.post('/login', async (req, res) => {
+    // The Login Route
+    app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     try {
       const user = await prisma.user.findUnique({ where: { email } });
@@ -63,7 +65,8 @@ async function main() {
   });
 
 
-  app.post("/todos", async (req, res) => {
+  // post a todo
+   app.post("/todos", async (req, res) => {
     const { title, description, isChecked, userId } = req.body;
     try {
       const user = await prisma.user.findUnique({ where: { id: userId } });
@@ -76,7 +79,6 @@ async function main() {
           title,
           description,
           isChecked,
-          user: { connect: { id: user.id } },
           userId: user.id,
         },
       });
@@ -84,6 +86,25 @@ async function main() {
     } catch (e) {
       console.error(e.message);
       res.status(500).json({ error: "Failed to create todo" });
+    }
+  });
+
+
+
+  // Get all todos for a user
+  app.get('/todos/:userId', async (req, res) => {
+    const userId = parseInt(req.params.userId);
+    try {
+      const user = await prisma.user.findUnique({ where: { id: userId } });
+      if (!user) {
+        res.status(404).json({ error: "User not found" });
+        return;
+      }
+      const todos = await prisma.mytodo.findMany({ where: { userId } });
+      res.json(todos);
+    } catch (e) {
+      console.error(e.message);
+      res.status(500).json({ error: "Failed to get todos for user" });
     }
   });
 
