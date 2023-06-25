@@ -22,7 +22,7 @@ git clone https://github.com/Abdelrahman0122/ToDo-App.git
 2. Install the dependencies:
 
 ```
-cd todo-app
+cd Backend
 npm install
 ```
 3. Create a .env file in the root directory of the project and set the following environment variables:
@@ -38,6 +38,19 @@ npx prisma migrate dev
 npm start
 ```
 6. Open the app in your browser at http://localhost:3000
+
+## Installation for The React Native 
+
+1. Install the dependencies:
+```
+cd client
+npm install
+```
+
+2. Run The React Native
+ ```
+ npx expo start
+ ```
 
 ## Usage
 
